@@ -7,14 +7,14 @@ include 'C:\xampp\htdocs\Notice-Board\dbconn.php';
 $classID = $_POST['classID'];
     $sql = "DELETE FROM classroom WHERE classID = '$classID'";
 
-    // Execute the SQL statement
+   
     if ($conn->query($sql) === TRUE) {
-        echo "Classroom deleted successfully.";
+        echo "<script>alert('Classroom deleted successfully');window.location.href = 'ViewClassrooms.php';</script>";
     } else {
-        echo "Error deleting classroom: " . $conn->error;
+        echo "<script>alert('Error deleting classroom: " . $conn->error;"'); window.location.href = 'ViewClassrooms.php';</script>";
     }
 
-    // Close connection
+
     $conn->close();
 
     ?>

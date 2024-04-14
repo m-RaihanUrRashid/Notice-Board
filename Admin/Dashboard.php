@@ -12,11 +12,11 @@ include 'C:\xampp\htdocs\Notice-Board\dbconn.php';
     <title>Create User</title>
     <link rel="stylesheet"  href="../styles.css">
     <style>
-        /* CSS for welcome message */
+       
         .welcome-message {
-            text-align: center; /* Center align the content */
-            font-size: 24px; /* Set font size to 24px */
-            margin-top: 20px; /* Add some top margin for spacing */
+            text-align: center; 
+            font-size: 24px;
+            margin-top: 20px;
         }
     </style>
 

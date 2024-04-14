@@ -8,7 +8,7 @@
     <link rel="stylesheet"  href="../styles.css">
 
     <style>
-        /* Basic styling */
+
     
         form {
             width: 400px;
@@ -30,7 +30,7 @@
         }
        
         #additionalFields {
-            display: none; /* Initially hide additional fields */
+            display: none; 
         }
     </style>
 </head>

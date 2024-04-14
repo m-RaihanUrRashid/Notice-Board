@@ -6,18 +6,18 @@
     <title>Create User</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        /* Box style for each list item */
+       
         .classroom-entry {
             border: 1px solid #ccc;
             background-color: #ccc;
             border-radius: 5px;
             padding: 10px;
             margin-bottom: 10px;
-            width: fit-content; /* Set width to fit content */
+            width: fit-content; 
         }
-        /* Button style */
+    
         .delete-button {
-            width: auto; /* Set width to auto */
+            width: auto; 
         }
     </style>
 </head>
@@ -40,35 +40,34 @@
 include 'C:\xampp\htdocs\Notice-Board\dbconn.php';
 $sql = "SELECT classID, className, semester FROM classroom";
 
-// Execute the query
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Output data of each row
+  
    
-    echo "<ul>"; // Start list
+    echo "<ul>"; 
     while ($row = $result->fetch_assoc()) {
-        // Start list item with box style
+       
         echo "<li class='classroom-entry'>";
         
-        // Display classroom name and semester
+      
         echo "<p>Class Name: " . $row["className"] . " - Semester: " . $row["semester"] . "</p>";
         
-        // Form to delete classroom
+       
         echo "<form action='delete_classroom.php' method='POST'>";
-        // Hidden input to pass classID to delete_classroom.php
-        echo "<input type='hidden' name='classID' value='" . $row["classID"] . "'>";
-        // Delete button
-        echo "<button class='delete-button' type='submit'>Delete</button>";
-        // Close form
-        echo "</form>";
         
-        // Close list item
+        echo "<input type='hidden' name='classID' value='" . $row["classID"] . "'>";
+
+        echo "<button class='delete-button' type='submit'>Delete</button>";
+ 
+        echo "</form>";
+     
         echo "</li>";
     }
-    echo "</ul>"; // End list
+    echo "</ul>";
 } else {
-    // No classrooms found
+
     echo "<p>No classrooms found</p>";
 }
 ?>
