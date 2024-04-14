@@ -2,3 +2,6 @@ open repo > cmd at that directory > run this:
 php -S localhost:8000
 
 dump user ID/passes here so we don't forget XD
+
+
+ADMIN - 1, pass
