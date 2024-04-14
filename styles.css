@@ -4,8 +4,9 @@
 }
 
 @font-face {
-    font-family: "Nanum", sans-serif;
-    src: url("fonts/NanumPenScript-Regular.ttf") format("truetype");
+    font-family: "BD", sans-serif;
+    src: url("fonts/BabyDoll.ttf") format("truetype");
+    src: url("fonts/BabyDoll.otf") format("opentype");
 }
 
 body {
@@ -44,7 +45,6 @@ h1 {
 
 p {
     color: #666;
-    font-family: "Nanum", sans-serif;
     margin: 0;
     display: inline-block;
     text-align: center;

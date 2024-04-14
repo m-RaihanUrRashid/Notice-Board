@@ -21,7 +21,10 @@ $data = json_decode($_SESSION['JSON']);
 
         span {
             color: #333;
-            font-family: "Nanum";
+            font-family: "BD", sans-serif;
+            padding: 10px;
+            font-weight: normal;
+            font-style: normal;
             background-color: #eee;
         }
     </style>
@@ -44,8 +47,6 @@ $data = json_decode($_SESSION['JSON']);
         </p>
     </div>
     <div class="background-container"></div>
-
-
 
     </body>
 
