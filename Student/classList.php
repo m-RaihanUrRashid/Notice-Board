@@ -8,14 +8,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class list</title>
+    <title>Class List</title>
     <link rel = stylesheet href= global_bg.css?parameter=3>
 </head>
 <body>
     <div class='questionView'>
     <?php
         session_start();
-        $assessID = $_SESSION["assessmentID"];
+        $queryID =  $_SESSION["userID"];
+        $sql ="SELECT classID FROM enroll WHERE studentID = '$queryID' GROUP BY COURSE_CODE;";
+        $course_list = mysqli_query($conn, $sql);
 
         $assessDetails = mysqli_query($conn, "SELECT AssessmentName, Semester, Year FROM assessment WHERE AssessmentID = '$assessID'");
         while ($row = mysqli_fetch_array($assessDetails)){
