@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Assignment</title>
+    <title>Make Assignment</title>
+    <link rel="stylesheet"  href="../styles.css">
 </head>
 <body>
-    <h1>Post Assignment</h1>
+    <h1>Make Assignment</h1>
     <form action="process_assignment.php" method="POST">
         <label for="assignment">Assignment:</label><br>
         <textarea id="assignment" name="assignment" rows="4" cols="50"></textarea><br>
