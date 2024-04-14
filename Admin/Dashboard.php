@@ -20,16 +20,16 @@ include 'C:\xampp\htdocs\Notice-Board\dbconn.php';
         }
     </style>
 
-    <nav>
-    <ul>
-        <li><a href="Dashboard.php">Dashboard</a></li>
-        <li><a href="AddStudent.php">Add Student</a></li>
-        <li><a href="AddTeacher.php">Add Teacher</a></li>
-        <li><a href="CreateClassroom.php">Create Classroom</a></li>
-        <li><a href="ViewClassrooms.php">View Classrooms</a></li>
-        <li><a href="index.html">Log Out</a></li>
-    </ul>
-</nav>
+<nav>
+        <ul>
+            <li><a href="Dashboard.php">Dashboard</a></li>
+            <li><a href="AddStudent.php">Add Student</a></li>
+            <li><a href="AddTeacher.php">Add Teacher</a></li>
+            <li><a href="CreateClassroom.php">Create Classroom</a></li>
+            <li><a href="ViewClassrooms.php">View Classrooms</a></li>
+            <li><a href="http://localhost/Notice-Board/">Log Out</a></li>
+        </ul>
+    </nav>
 
 <h1>Admin Dashboard</h2>
 <div class="welcome-message">

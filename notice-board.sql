@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2024 at 04:24 PM
+-- Generation Time: Apr 14, 2024 at 07:34 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `notice-board`
 --
+CREATE DATABASE IF NOT EXISTS `notice-board` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `notice-board`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `announcement`
 --
 
+DROP TABLE IF EXISTS `announcement`;
 CREATE TABLE `announcement` (
   `annID` int(20) NOT NULL,
   `title` varchar(50) NOT NULL,
@@ -41,6 +44,7 @@ CREATE TABLE `announcement` (
 -- Table structure for table `assignment`
 --
 
+DROP TABLE IF EXISTS `assignment`;
 CREATE TABLE `assignment` (
   `assID` int(20) NOT NULL,
   `classID` int(10) NOT NULL,
@@ -57,6 +61,7 @@ CREATE TABLE `assignment` (
 -- Table structure for table `classroom`
 --
 
+DROP TABLE IF EXISTS `classroom`;
 CREATE TABLE `classroom` (
   `classID` int(10) NOT NULL,
   `className` varchar(100) NOT NULL,
@@ -66,12 +71,20 @@ CREATE TABLE `classroom` (
   `SODid` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `classroom`
+--
+
+INSERT INTO `classroom` (`classID`, `className`, `teacherID`, `semester`, `isActive`, `SODid`) VALUES
+(2344, 'Mr Jekyll', 45, 'summer 25 ', 0, 14);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `depthead`
 --
 
+DROP TABLE IF EXISTS `depthead`;
 CREATE TABLE `depthead` (
   `dept` varchar(50) NOT NULL,
   `teacherID` int(10) NOT NULL
@@ -83,6 +96,7 @@ CREATE TABLE `depthead` (
 -- Table structure for table `enrol`
 --
 
+DROP TABLE IF EXISTS `enrol`;
 CREATE TABLE `enrol` (
   `studentID` int(10) NOT NULL,
   `classID` int(10) NOT NULL
@@ -94,6 +108,7 @@ CREATE TABLE `enrol` (
 -- Table structure for table `query`
 --
 
+DROP TABLE IF EXISTS `query`;
 CREATE TABLE `query` (
   `qID` int(20) NOT NULL,
   `SODid` int(10) NOT NULL,
@@ -109,6 +124,7 @@ CREATE TABLE `query` (
 -- Table structure for table `sod`
 --
 
+DROP TABLE IF EXISTS `sod`;
 CREATE TABLE `sod` (
   `SODid` int(10) NOT NULL,
   `classID` int(10) NOT NULL
@@ -120,6 +136,7 @@ CREATE TABLE `sod` (
 -- Table structure for table `sodapplication`
 --
 
+DROP TABLE IF EXISTS `sodapplication`;
 CREATE TABLE `sodapplication` (
   `SODid` int(10) NOT NULL,
   `classID` int(10) NOT NULL,
@@ -133,6 +150,7 @@ CREATE TABLE `sodapplication` (
 -- Table structure for table `student`
 --
 
+DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `studentID` int(10) NOT NULL,
   `dept` varchar(30) NOT NULL,
@@ -141,12 +159,21 @@ CREATE TABLE `student` (
   `isSOD` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`studentID`, `dept`, `minor`, `enrollDate`, `isSOD`) VALUES
+(0, '', '', '0000-00-00', 0),
+(14, 'CSE', 'CMN', '2024-04-23', 0);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `submission`
 --
 
+DROP TABLE IF EXISTS `submission`;
 CREATE TABLE `submission` (
   `subID` int(20) NOT NULL,
   `assID` int(20) NOT NULL,
@@ -162,6 +189,7 @@ CREATE TABLE `submission` (
 -- Table structure for table `teacher`
 --
 
+DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
   `teacherID` int(10) NOT NULL,
   `dept` varchar(30) NOT NULL,
@@ -169,12 +197,21 @@ CREATE TABLE `teacher` (
   `isHead` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`teacherID`, `dept`, `officeNo`, `isHead`) VALUES
+(45, 'CSE', '4', 0),
+(69, 'CSE', '4', 0);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userID` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -189,7 +226,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `name`, `password`, `email`, `phone`, `role`) VALUES
-(1, 'admin', '$2y$10$X9bKsbks89BjQThcqWy5T.IEP/M3k4tpfGbggBBdf78WMeHTeWSFm', 'admin@admin.com', '+8801234567891', 'Admin');
+(0, 'Dhara', '$2y$10$uJE30W4kL6Y6MH3mDlN0nOBKCm18cKBEy6BXMj9JdNGwja5U4X5z.', '', '', 'Student'),
+(1, 'admin', '$2y$10$X9bKsbks89BjQThcqWy5T.IEP/M3k4tpfGbggBBdf78WMeHTeWSFm', 'admin@admin.com', '+8801234567891', 'Admin'),
+(14, 'Dhara', '$2y$10$bdqJsxmdPw6uXzZ1f3gyVOMj9GA3F/w3kQ0XpDPe3vIKIdJD2S0KK', 'hyde@gmail.com', '01761149789', 'Student'),
+(45, 'Dhara', '$2y$10$NrpTOYDX.eQm3W.VFkiJK.OUYsWd.lACC.NsqqxKKGW1pWqjYoCR6', 'frank@gmail.com', '084869', 'Teacher'),
+(69, 'dhara', '$2y$10$FG6aPkiT9W4a/KsTJYCXouv6kBr2wv.Z7EqzTIELd6xtoNasLX71C', 'hyde@gmail.com', '01761149789', 'Teacher');
 
 --
 -- Indexes for dumped tables
@@ -298,7 +339,7 @@ ALTER TABLE `assignment`
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `classID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `classID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2345;
 
 --
 -- AUTO_INCREMENT for table `query`
