@@ -15,6 +15,8 @@ p {
     font-family: Verdana, Tahoma, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
+    display: inline-block; /* or display: inline; */
+    text-align: center;
 }
 
 .login-container {
@@ -24,6 +26,7 @@ p {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
 }
 
 #header {
