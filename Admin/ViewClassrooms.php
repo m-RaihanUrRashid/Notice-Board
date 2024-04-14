@@ -45,7 +45,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Output data of each row
-    echo "<h2>Existing Classrooms:</h2>";
+   
     echo "<ul>"; // Start list
     while ($row = $result->fetch_assoc()) {
         // Start list item with box style
