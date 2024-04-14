@@ -30,14 +30,14 @@
             <li><a href="AddTeacher.php">Add Teacher</a></li>
             <li><a href="CreateClassroom.php">Create Classroom</a></li>
             <li><a href="ViewClassrooms.php">View Classrooms</a></li>
-            <li><a href="http://localhost/Notice-Board/">Log Out</a></li>
+            <li><a href="../index.html">Log Out</a></li>
         </ul>
     </nav>
 
 <h1>Classrooms</h1>
 
 <?php
-include 'C:\xampp\htdocs\Notice-Board\dbconn.php';
+include('../dbconn.php');;
 $sql = "SELECT classID, className, semester FROM classroom";
 
 

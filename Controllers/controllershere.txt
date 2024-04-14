@@ -1,2 +1,0 @@
-put controllers here
-we don have controllers or classes, the PHP files will be where the code also runs

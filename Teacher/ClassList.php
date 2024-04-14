@@ -1,6 +1,6 @@
 <?php
 // Include the dbconn.php file to establish a connection with the database
-include 'C:\xampp\htdocs\Notice-Board\dbconn.php';
+include('../dbconn.php');;
 
 // Fetch the logged-in teacher's name from the database
 session_start();

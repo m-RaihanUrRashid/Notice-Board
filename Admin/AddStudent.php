@@ -7,9 +7,7 @@
         <title>Create User</title>
         <link rel="stylesheet"  href="../styles.css">
 
-        <style>
-          
-        
+        <style>        
             form {
                 width: 400px;
                 margin: 0 auto;
@@ -44,7 +42,7 @@
             <li><a href="AddTeacher.php">Add Teacher</a></li>
             <li><a href="CreateClassroom.php">Create Classroom</a></li>
             <li><a href="ViewClassrooms.php">View Classrooms</a></li>
-            <li><a href="http://localhost/Notice-Board/">Log Out</a></li>
+            <li><a href="../index.html">Log Out</a></li>
         </ul>
     </nav>
 

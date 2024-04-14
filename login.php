@@ -1,4 +1,5 @@
 <?php
+session_start();
 $_SESSION = array();
 session_destroy();
 session_start();
@@ -19,21 +20,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result) {
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-            $SuserID = $row["userID"];
-            $Sname = $row["name"];
             $Spassword = $row["password"];
-            $Semail = $row["email"];
-            $Sphone = $row["phone"];
             $Srole = $row["role"];
 
             if (password_verify($password, $Spassword)) {
                 if ($Srole == "Admin") {
                     $response = array(
                         "success" => true,
-                        "userID" => $SuserID,
-                        "name" => $Sname,
-                        "email" => $Semail,
-                        "phone" => $Sphone,
+                        "userID" => $row["userID"],
+                        "name" => $row["name"],
+                        "email" => $row["email"],
+                        "phone" => $row["phone"],
+                    );
+                    $_SESSION['JSON'] = json_encode($response);
+                    header('Location: Admin/Dashboard.php');
+                    echo json_encode($response);
+                }
+                if ($Srole == "Teacher") {
+                    $response = array(
+                        "success" => true,
+                        "userID" => $row["userID"],
+                        "name" => $row["name"],
+                        "email" => $row["email"],
+                        "phone" => $row["phone"],
+                        "dept" => $row["dept"],
+                        "officeNo" => $row["officeNo"],
+                        "isHead" => $row["isHead"]
                     );
                     $_SESSION['JSON'] = json_encode($response);
                     header('Location: Admin/Dashboard.php');

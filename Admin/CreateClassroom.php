@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create User</title>
-    <link rel="stylesheet"  href="../styles.css">
+    <link rel="stylesheet" href="../styles.css">
 
     <style>
-       
         form {
             width: 400px;
             margin: 0 auto;
@@ -17,6 +16,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         label {
             display: block;
             margin-bottom: 5px;
@@ -30,15 +30,12 @@
        
     
         #additionalFields {
-            display: none; 
+            display: none;
         }
     </style>
 </head>
+
 <body>
-
-
-
-
 <nav>
         <ul>
             <li><a href="Dashboard.php">Dashboard</a></li>
@@ -46,7 +43,7 @@
             <li><a href="AddTeacher.php">Add Teacher</a></li>
             <li><a href="CreateClassroom.php">Create Classroom</a></li>
             <li><a href="ViewClassrooms.php">View Classrooms</a></li>
-            <li><a href="http://localhost/Notice-Board/">Log Out</a></li>
+            <li><a href="../index.html">Log Out</a></li>
         </ul>
     </nav>
 
