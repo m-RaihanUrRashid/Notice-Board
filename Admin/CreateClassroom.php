@@ -28,17 +28,8 @@
             width: 100%;
             box-sizing: border-box;
         }
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
+       
+    
         #additionalFields {
             display: none; /* Initially hide additional fields */
         }

@@ -1,14 +1,26 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #1b7e79 50%, #efbec7 50%);
+    background-color: #ebe894;
     margin: 0;
+}
+.background-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width:35%;
+    height: 500px; /* Height of the container */
+    background-image: url('pencil.png'); /* Background image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
 }
 
 h1 {
     text-align: center;
     margin-top: 50px;
     font: Georgia;    
-    color: #c0e9de;
+    color: #603d28;
 }
 
 p {
@@ -62,8 +74,8 @@ input[type="text"], input[type="password"] {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #ebe894;
+    color: #603e0b;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -71,23 +83,15 @@ button {
 }
 
 button:hover {
-    background-color: #063a71;
+    background-color: #d49d59;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #fa5271 ;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-}
+
 
 
 nav {
-    background-color: #efbec7 ;
-    color:  #1b7e79;
+    background-color:#603d28;
+    color:  #ebe894;
     padding: 10px;
 }
 nav ul {
@@ -100,7 +104,7 @@ nav ul li {
     margin-right: 20px;
 }
 nav ul li a {
-    color:#1b7e79;
+    color:#ebe894;
     text-decoration: none;
     font-weight: bold;
 }
