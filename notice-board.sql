@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2024 at 12:56 PM
+-- Generation Time: Apr 14, 2024 at 04:24 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `notice-board`
 --
-CREATE DATABASE IF NOT EXISTS `notice-board` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `notice-board`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +27,6 @@ USE `notice-board`;
 -- Table structure for table `announcement`
 --
 
-DROP TABLE IF EXISTS `announcement`;
 CREATE TABLE `announcement` (
   `annID` int(20) NOT NULL,
   `title` varchar(50) NOT NULL,
@@ -44,7 +41,6 @@ CREATE TABLE `announcement` (
 -- Table structure for table `assignment`
 --
 
-DROP TABLE IF EXISTS `assignment`;
 CREATE TABLE `assignment` (
   `assID` int(20) NOT NULL,
   `classID` int(10) NOT NULL,
@@ -61,7 +57,6 @@ CREATE TABLE `assignment` (
 -- Table structure for table `classroom`
 --
 
-DROP TABLE IF EXISTS `classroom`;
 CREATE TABLE `classroom` (
   `classID` int(10) NOT NULL,
   `className` varchar(100) NOT NULL,
@@ -77,7 +72,6 @@ CREATE TABLE `classroom` (
 -- Table structure for table `depthead`
 --
 
-DROP TABLE IF EXISTS `depthead`;
 CREATE TABLE `depthead` (
   `dept` varchar(50) NOT NULL,
   `teacherID` int(10) NOT NULL
@@ -86,10 +80,20 @@ CREATE TABLE `depthead` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `enrol`
+--
+
+CREATE TABLE `enrol` (
+  `studentID` int(10) NOT NULL,
+  `classID` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `query`
 --
 
-DROP TABLE IF EXISTS `query`;
 CREATE TABLE `query` (
   `qID` int(20) NOT NULL,
   `SODid` int(10) NOT NULL,
@@ -105,7 +109,6 @@ CREATE TABLE `query` (
 -- Table structure for table `sod`
 --
 
-DROP TABLE IF EXISTS `sod`;
 CREATE TABLE `sod` (
   `SODid` int(10) NOT NULL,
   `classID` int(10) NOT NULL
@@ -117,7 +120,6 @@ CREATE TABLE `sod` (
 -- Table structure for table `sodapplication`
 --
 
-DROP TABLE IF EXISTS `sodapplication`;
 CREATE TABLE `sodapplication` (
   `SODid` int(10) NOT NULL,
   `classID` int(10) NOT NULL,
@@ -131,7 +133,6 @@ CREATE TABLE `sodapplication` (
 -- Table structure for table `student`
 --
 
-DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
   `studentID` int(10) NOT NULL,
   `dept` varchar(30) NOT NULL,
@@ -146,7 +147,6 @@ CREATE TABLE `student` (
 -- Table structure for table `submission`
 --
 
-DROP TABLE IF EXISTS `submission`;
 CREATE TABLE `submission` (
   `subID` int(20) NOT NULL,
   `assID` int(20) NOT NULL,
@@ -162,7 +162,6 @@ CREATE TABLE `submission` (
 -- Table structure for table `teacher`
 --
 
-DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
   `teacherID` int(10) NOT NULL,
   `dept` varchar(30) NOT NULL,
@@ -176,7 +175,6 @@ CREATE TABLE `teacher` (
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userID` int(10) NOT NULL,
   `name` varchar(50) NOT NULL,
@@ -185,6 +183,13 @@ CREATE TABLE `user` (
   `phone` varchar(15) NOT NULL,
   `role` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`userID`, `name`, `password`, `email`, `phone`, `role`) VALUES
+(1, 'admin', '$2y$10$X9bKsbks89BjQThcqWy5T.IEP/M3k4tpfGbggBBdf78WMeHTeWSFm', 'admin@admin.com', '+8801234567891', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -218,6 +223,12 @@ ALTER TABLE `classroom`
 ALTER TABLE `depthead`
   ADD PRIMARY KEY (`dept`,`teacherID`),
   ADD KEY `fk_dpt` (`teacherID`);
+
+--
+-- Indexes for table `enrol`
+--
+ALTER TABLE `enrol`
+  ADD PRIMARY KEY (`studentID`,`classID`);
 
 --
 -- Indexes for table `query`
