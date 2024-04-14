@@ -5,22 +5,26 @@ body {
 }
 .background-container {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    width:35%;
-    height: 500px; /* Height of the container */
-    background-image: url('pencil.png'); /* Background image URL */
-    background-size: cover;
+    width: 100%;
+    height: 100vh; /* Adjusted to fit the entire screen */
+    background-image: url('stationary2.png'); /* Background image URL */
+    background-size: 200% 200%; /* Scales the image to cover the entire container */
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center; /* Center the background image horizontally */
     text-align: center;
+    z-index: -2;
 }
+
+
 
 h1 {
     text-align: center;
     margin-top: 50px;
     font: Georgia;    
     color: #603d28;
+    z-index: -1;
 }
 
 p {
@@ -46,7 +50,8 @@ p {
     background-color: #333;
     color: #fff;
     padding: 30px;
-    margin: 0;
+    /* margin: 0; */
+    /* margin-top: 20px; */
     font-size: 60px;
 }
 
