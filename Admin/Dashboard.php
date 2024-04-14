@@ -1,4 +1,34 @@
-<php>
+<?php
+// Start session
+session_start();
+
+// Check if the admin is logged in
+if(isset($_SESSION['admin_username'])) {
+    // Establish database connection
+
+  
+
+    // Fetch admin's name from database
+    $admin_username = $_SESSION['admin_username'];
+    $sql = "SELECT Name FROM user WHERE UserID = '$admin_username'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $adminName = $row['Name'];
+        }
+    } else {
+        $adminName = "Unknown";
+    }
+
+    $conn->close();
+} else {
+    // Redirect to login page if admin is not logged in
+    header("Location: AddStudent.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,4 +64,3 @@
 </body>
 </html>
 
-</php>

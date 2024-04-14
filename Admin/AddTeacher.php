@@ -1,4 +1,4 @@
-<php>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +62,7 @@
 
 
 
-<form action="process_student.php" method="POST">
+<form action="process_teacher.php" method="POST">
     <label for="userID">User ID:</label>
     <input type="text" id="userID" name="userID" required>
 
@@ -99,4 +99,3 @@
 </body>
 </html>
 
-</php>
