@@ -1,5 +1,5 @@
 <?php
-    include 'dbconn.php';
+    include 'D:\xampp\htdocs\Notice-Board\dbconn.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,25 +12,21 @@
     <link rel = stylesheet href= global_bg.css?parameter=3>
 </head>
 <body>
+    <h1>hello</h1>
     <div class='questionView'>
     <?php
-        session_start();
-        $queryID =  $_SESSION["userID"];
-        $sql ="SELECT classID FROM enroll WHERE studentID = '$queryID' GROUP BY COURSE_CODE;";
+        //session_start();
+        //$queryID =  $_SESSION["userID"];
+        $queryID = "2";
+        $sql ="SELECT classID FROM enroll WHERE studentID = '$queryID'" ;
         $course_list = mysqli_query($conn, $sql);
 
-        $assessDetails = mysqli_query($conn, "SELECT AssessmentName, Semester, Year FROM assessment WHERE AssessmentID = '$assessID'");
-        while ($row = mysqli_fetch_array($assessDetails)){
-            echo "Assessment Type: ", $row['AssessmentName'], "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Semester: ", 
-                $row['Semester'], "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Year:", $row['Year'], "<br><br>";
-        }
-
-        $qarray = mysqli_query($conn, "SELECT COID, Question, QuestionMarks, DifficultyLevel FROM question WHERE AssessmentID = '$assessID'");
-
-        while ($row1 = mysqli_fetch_array($qarray)){
-            echo "Question:<br><textarea rows=\"10\" cols=\"100\">", $row1['Question'], "</textarea><br>", 
-                "<br>CO: CO", $row1['COID'], "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Question Marks:", $row1['QuestionMarks'], 
-                "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Difficulty Level:",$row1['DifficultyLevel'], "<br><br>";
+        while ($class = mysqli_fetch_array($course_list)){
+            $ID = $class['classID']; 
+            $sql1 ="SELECT className FROM classroom WHERE classID = '$ID'" ;
+            $classname = mysqli_query($conn, $sql1);
+            $row = mysqli_fetch_assoc($classname);
+            echo "<button>", $row['className'], "</button>";
         }
 
         
