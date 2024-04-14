@@ -1,4 +1,9 @@
-<php>
+
+<?php 
+include 'C:\xampp\htdocs\Notice-Board\dbconn.php';
+    session_start();
+    $data = json_decode($_SESSION['JSON']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,17 +20,17 @@
         <li><a href="AddTeacher.php">Add Teacher</a></li>
         <li><a href="CreateClassroom.php">Create Classroom</a></li>
         <li><a href="ViewClassrooms.php">View Classrooms</a></li>
-        <li><a href="login.php">Log Out</a></li>
+        <li><a href="../index.html">Log Out</a></li>
     </ul>
 </nav>
 
 <h1>Admin Dashboard</h2>
 
 <div class="welcome-message">
-    <p>Welcome Admin</p>
-    <!-- PHP code to fetch admin's name from database and display it -->
-    <!-- Example: <p>Welcome Admin <?php echo $adminName; ?></p> -->
-    <p>Welcome Admin John Doe</p> <!-- Example static welcome message -->
+    <p>Welcome</p>
+    <?php
+        echo $data->name;
+    ?>
 </div>
 
 
@@ -34,4 +39,3 @@
 </body>
 </html>
 
-</php>

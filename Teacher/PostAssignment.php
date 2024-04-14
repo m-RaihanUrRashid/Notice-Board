@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment List</title>
+    <title>Make Assignment</title>
     <link rel="stylesheet"  href="../styles.css">
 </head>
 <body>
-    <h1>Assignment List</h1>
-        <button onclick="location.href='Assignment.php?assignment_id=1'">Assignment 1</button>
-        <button onclick="location.href='Assignment.php?assignment_id=2'">Assignment 2</button>
-        <!-- Add more list items for each assignment -->
+    <h1>Make Assignment</h1>
+    <form action="process_assignment.php" method="POST">
+        <label for="assignment">Assignment:</label><br>
+        <textarea id="assignment" name="assignment" rows="4" cols="50"></textarea><br>
+        <button type="submit">Post</button>
+    </form>
 </body>
 </html>

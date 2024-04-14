@@ -8,10 +8,8 @@
 </head>
 <body>
     <h1>Assignment List</h1>
-    <ul>
-        <li><a href="Assignment.php?assignment_id=1">Assignment 1</a></li>
-        <li><a href="Assignment.php?assignment_id=2">Assignment 2</a></li>
+        <button onclick="location.href='Assignment.php?assignment_id=1'">Assignment 1</button>
+        <button onclick="location.href='Assignment.php?assignment_id=2'">Assignment 2</button>
         <!-- Add more list items for each assignment -->
-    </ul>
 </body>
 </html>
