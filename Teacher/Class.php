@@ -7,6 +7,29 @@
     <link rel="stylesheet"  href="../styles.css">
 </head>
 <body>
+    <?php
+        // session_start();
+        // if(isset($_GET['ID'])) {
+        //     $ID = $_GET['ID'];
+        //     $data = json_decode($_SESSION['JSON']);
+        //     $data["class"] = $ID;
+        //     $_SESSION['JSON'] = json_encode($data);
+        //     echo $_SESSION['JSON'];
+        // }
+    ?>
+
+    <nav>
+        <ul>
+            <!-- <li><a href="AssignmentList.php">Assignment List</a></li>
+            <li><a href="Assignment.php">Assignment</a></li>
+            <li><a href="Class.php">Class</a></li>
+            <li><a href="MakeAnnouncement.php">Make Announcement</a></li>
+            <li><a href="PostAssignment.php">Post Assignment</a></li> -->
+            <li><a href="ClassList.php">Dashboard</a></li>
+            <li><a href="../index.html">Log Out</a></li>
+        </ul>
+    </nav>
+
     <h1>Classroom [1]</h1>
     <button onclick="location.href='MakeAnnouncement.php'">Make Announcement</button> 
     <button onclick="location.href='PostAssignment.php'">Post Assignment</button> 
