@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         "isHead" => $row["isHead"]
                     );
                     $_SESSION['JSON'] = json_encode($response);
-                    header('Location: Admin/Dashboard.php');
+                    header('Location: Teacher/ClassList.php');
                     echo json_encode($response);
                 }
             } else {

@@ -71,8 +71,17 @@ p {
     font-size: 60px;
 }
 
+
+lol{
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+   display: block;
+}
 h2 {
     text-align: center;
+  
+
 }
 
 .form-group {
