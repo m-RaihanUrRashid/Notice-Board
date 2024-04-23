@@ -76,11 +76,12 @@
             while ($ass = mysqli_fetch_array($asslist)) {
                 $stuID = $ass['studentID'];
                 $sql1 = "SELECT name FROM user WHERE userID = '$stuID'";
-        $student = mysqli_query($conn, $sql1);
+        $query = mysqli_query($conn, $sql1);
+        $student = mysqli_fetch_assoc($query);
                 echo "<div class='announ d-flex'>";
                 echo "<div style='display: inline-block; width: 75%; vertical-align: top;'>";
                 echo "<h3>" . $student['name'] . "</h3>";
-                echo "<p>" . $ass['subdate'] . "</p><br><br>";
+                echo "<p>" . $ass['subDate'] . "</p><br><br>";
                 echo "<p>" . $ass['filelink'] . "</p>";
                 echo "</div>";
                 echo "<div id='submitBox' style='display: inline-block; width: 20%;'>";
