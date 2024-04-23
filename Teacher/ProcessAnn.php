@@ -8,15 +8,14 @@ $classID = $_SESSION['classID'];
 $createdBy = $data->userID;
 $createdAt = date('Y-m-d H:i:s');
 $title = $_POST['title'];
-$assignment = $_POST['assignment'];
-$deadline = $_POST['deadline'];
 
-$sql = "INSERT INTO assignment (classID, createdAt, title, description, deadline) 
-                    VALUES ('$classID', '$createdAt', '$title', '$assignment', '$deadline')";
+$announcement = $_POST['announcement'];
+$sql = "INSERT INTO announcement (title, content, createdBy, createdAt , classID) 
+                    VALUES ('$title','$announcement', '$createdBy', '$createdAt', '$classID')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<script>alert('New assignment added to class!');window.location.href = 'stuClass.php';</script>";
+    echo "<script>alert('New announcement sent successfully to class!');window.location.href = 'Class.php';</script>";
 } else {
     echo "<script>alert('Error: " . $conn->error . "'); window.location.href = 'stuClassList.php';</script>";
 }
-?> 
+?>

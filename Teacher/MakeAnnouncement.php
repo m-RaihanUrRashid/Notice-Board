@@ -8,8 +8,9 @@
 </head>
 <body>
     <h1>Make Announcement</h1>
-    <form action="process_announcement.php" method="POST">
+    <form action="ProcessAnn.php" method="POST">
         <label for="announcement">Announcement:</label><br>
+        <input type='text' id='textbox' name='title' size='20' style="width: 15%;"><br><br>
         <textarea id="announcement" name="announcement" rows="4" cols="50"></textarea><br>
         <button type="submit">Post</button>
     </form>

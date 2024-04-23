@@ -3,14 +3,25 @@
     session_start();
     ob_start();
     $data = json_decode($_SESSION['JSON']); 
-?>
 
+if (isset($_GET['ID'])) {
+    $ID = $_GET['ID'];
+    $_SESSION['classID'] = $ID;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom [1]</title>
+    
+    <?php 
+        $ID = $_SESSION['classID'];
+        $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
+        $classname = mysqli_query($conn, $sql1);
+        $row = mysqli_fetch_assoc($classname);
+        echo "<title>", $row['className'], "</title>";
+    ?>
     <link rel="stylesheet"  href="../styles.css">
 </head>
 <body>
@@ -38,7 +49,7 @@
     </nav>
 
     <?php 
-        $ID = $_GET['ID'];
+        $ID = $_SESSION['classID'];
         $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
         $classname = mysqli_query($conn, $sql1);
         $row = mysqli_fetch_assoc($classname);

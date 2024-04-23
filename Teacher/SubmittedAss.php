@@ -66,29 +66,33 @@
         //     echo "<button onclick=\"btnGo('", $ID, "')\">", $row['className'], "</button>";
         // }
 
-        
+        $assID = $_POST['assID'];
 
-        $sql = "SELECT assID, title, description, deadline, createdAt FROM assignment WHERE classID = '$ID'";
+        $sql = "SELECT * FROM submission WHERE assID = '$assID'";
         $asslist = mysqli_query($conn, $sql);
         if(mysqli_num_rows($asslist) == 0){
-            echo "<div class=announ style=\"text-align: center;\"> No Assingments yet. </div><br>";
+            echo "<div class=announ style=\"text-align: center;\"> No submissions yet. </div><br>";
         }else{
             while ($ass = mysqli_fetch_array($asslist)) {
+                $stuID = $ass['studentID'];
+                $sql1 = "SELECT name FROM user WHERE userID = '$stuID'";
+        $student = mysqli_query($conn, $sql1);
                 echo "<div class='announ d-flex'>";
                 echo "<div style='display: inline-block; width: 75%; vertical-align: top;'>";
-                echo "<h3>" . $ass['title'] . "</h3>";
-                echo "<p>" . $ass['createdAt'] . "</p><br><br>";
-                echo "<p>" . $ass['description'] . "</p>";
+                echo "<h3>" . $student['name'] . "</h3>";
+                echo "<p>" . $ass['subdate'] . "</p><br><br>";
+                echo "<p>" . $ass['filelink'] . "</p>";
                 echo "</div>";
                 echo "<div id='submitBox' style='display: inline-block; width: 20%;'>";
-                echo "<p style='font-size: 13px;'>Due Date: " . $ass['deadline'] . "</p><br><br>";
-                echo "<form action='SubmittedAss.php' method='POST'>";
+                echo "<form action='submit_assignment.php' method='POST'>";
                 echo "<input type='hidden' name='assID' value='" . $ass['assID'] . "'>";
-                echo "<button type='submit' style=\"border: 1px solid black;\">View assignments</button>";
+                
+                echo "<label for='textbox' style='font-size: 13px;'>Enter Grade:</label>";
+                echo "<input type='text' id='textbox' name='linkBox' size='100' style=\"background-color: rgba(255, 255, 255, 0.6); border: 2px solid #603d28;\" required><br><br>";
+                echo "<button type='submit' style=\"border: 1px solid black;\">Grade</button>";
                 echo "</form>";
                 echo "</div>";
                 echo "</div>";
-
             }
         }
         ?>

@@ -7,11 +7,11 @@
     <link rel="stylesheet"  href="../styles.css">
 </head>
 <body>
-    <h1>Assignment Details</h1>
+    <h1>Submitted Details</h1>
     <!-- Fetch and display details of the selected assignment using PHP -->
     <?php
     // Retrieve the assignment ID from the URL parameter
-    $assignment_id = $_GET['assignment_id'];
+    $assignment_id = $_POST['assID'];
 
     // Query the database to retrieve assignment details based on the ID
     // Assume $assignment_info is an array containing information about the assignment
