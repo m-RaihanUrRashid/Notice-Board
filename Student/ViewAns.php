@@ -38,14 +38,14 @@
     </nav>
     <?php
         $ID = $_SESSION['classID'];
-        $sql1 = "SELECT className FROM classroom WHERE classID = '$ID' ORDER BY createdAt DESC";
+        $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
         $classname = mysqli_query($conn, $sql1);
         $row = mysqli_fetch_assoc($classname);
         echo "<h1>", $row['className'], "</h1>";
     ?>
     <div id="ansBox">
         <?php    
-        $sql = "SELECT * FROM query WHERE classID = '$ID'";
+        $sql = "SELECT * FROM query WHERE classID = '$ID' ORDER BY createdAt DESC";
         $annlist = mysqli_query($conn, $sql);
         if(mysqli_num_rows($annlist) == 0){
             echo "<div class=announ style=\"text-align: center;\"> No queries yet. </div><br>";
