@@ -18,9 +18,7 @@
             padding: 30px;
             
         }
-        #submitBox{
 
-        }
         .announ{
             border: 5px solid #603d28;
             border-radius: 5px;
@@ -66,7 +64,7 @@
         //     echo "<button onclick=\"btnGo('", $ID, "')\">", $row['className'], "</button>";
         // }
 
-        
+        $stuID = $data->userID;
 
         $sql = "SELECT assID, title, description, deadline, createdAt FROM assignment WHERE classID = '$ID'";
         $asslist = mysqli_query($conn, $sql);
@@ -84,30 +82,40 @@
                 echo "<form action='submit_assignment.php' method='POST'>";
                 echo "<input type='hidden' name='assID' value='" . $ass['assID'] . "'>";
                 echo "<p style='font-size: 13px;'>Due Date: " . $ass['deadline'] . "</p><br><br>";
-                echo "<label for='textbox' style='font-size: 13px;'>Enter your Google drive link:</label>";
-                echo "<input type='text' id='textbox' name='linkBox' size='100' style=\"background-color: rgba(255, 255, 255, 0.6); border: 2px solid #603d28;\" required><br><br>";
-                echo "<button type='submit' style=\"border: 1px solid black;\">Turn in</button>";
+                $sql2 = "SELECT * FROM submission WHERE assID = '" . $ass['assID'] . "' AND studentID = '" . $stuID . "'";
+                $subs = mysqli_query($conn, $sql2);
+                if(mysqli_num_rows($subs) != 0){
+                    echo "<label for='textbox' style='font-size: 13px;'>Enter your Google drive link:</label>";
+                    echo "<input type='text' id='textbox' name='linkBox' size='100' style=\"background-color: rgba(255, 255, 255, 0.6); border: 2px solid #603d28;\" disabled><br><br>";
+                    echo "<button type='submit' style=\"all: unset\" disabled>Turn in</button>";
+                }else{
+                    echo "<label for='textbox' style='font-size: 13px;'>Enter your Google drive link:</label>";
+                    echo "<input type='text' id='textbox' name='linkBox' size='100' style=\"background-color: rgba(255, 255, 255, 0.6); border: 2px solid #603d28;\" required><br><br>";
+                    echo "<button type='submit' style=\"border: 1px solid black;\" >Turn in</button>";
+                }
                 echo "</form>";
                 echo "</div>";
-                echo "</div>";
+                echo "</div><br>";
             }
         }
         ?>
-        <!-- <div class="announ d-flex">
+        <div class="announ d-flex">
             <div style="display: inline-block; width: 75%; vertical-align: top;">
                 <h3>$ass['title']; ?></h3>
                 <p>$ass['createdAt']; ?></p>
                 <p>$ass['description']; ?></p>
             </div>
             <div style="display: inline-block; width: 20%;">
-                <form action="submit_assignment.php" method="POST">
+                <form action="submit_assignment.php" method="POST"> 
                     <p style= "font-size:13px;">Due Date: $ass['deadline']; ?></p><br><br>
+                    $sql = "SELECT assID, title, description, deadline, createdAt FROM assignment WHERE classID = '$ID'";
+                    $asslist = mysqli_query($conn, $sql);
                     <label for="textbox" style="font-size: 13px">Enter your Google drive link:</label>
                     <input type="text" id="textbox" name="textbox" size="100"><br><br>
                     <button type="submit">Turn in</button>
                 </form>
             </div>
-        </div>-->
+        </div>
     </div> 
 </body>
 </html>
