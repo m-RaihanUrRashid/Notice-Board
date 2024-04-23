@@ -1,11 +1,11 @@
 <?php
-    include('../dbconn.php');
-    session_start();
-    ob_start();
-    $data = json_decode($_SESSION['JSON']);
-    if (isset($_GET['unset_session']) && $_GET['unset_session'] === 'true') {
-        unset($_SESSION['classID']);
-    }
+include('../dbconn.php');
+session_start();
+ob_start();
+$data = json_decode($_SESSION['JSON']);
+if (isset($_GET['unset_session']) && $_GET['unset_session'] === 'true') {
+    unset($_SESSION['classID']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +32,16 @@
 
     <nav>
         <ul>
+            <?php
+            if ($data->isSOD != null) {
+                echo '<form method="post"><button id="SODMode" type="submit" name="submit">SOD Portal</button></form>';
+                if (isset($_POST['submit'])) {
+                    $_SESSION['JSON'] = json_encode($data);
+                    header('Location: ../SOD/SOD.php');
+                    echo json_encode($data);
+                }
+            };
+            ?>
             <!-- <li><a href="AssignmentList.php">Assignment List</a></li>
             <li><a href="Assignment.php">Assignment</a></li>
             <li><a href="Class.php">Class</a></li>
@@ -69,11 +79,12 @@
         // function btnGo(ID) {
         //     document.write(ID);
         //     <?php
-        //         $data["class"] = $ID;
-        //         $_SESSION['JSON'] = json_encode($data);
-        //         header('Location: Teacher/ClassList.php');
-        //         echo json_encode($data);
-        //     ?>
+                //         $data["class"] = $ID;
+                //         $_SESSION['JSON'] = json_encode($data);
+                //         header('Location: Teacher/ClassList.php');
+                //         echo json_encode($data);
+                //     
+                ?>
         // }
     </script>
 </body>
