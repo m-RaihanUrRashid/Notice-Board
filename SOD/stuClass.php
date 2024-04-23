@@ -23,7 +23,7 @@ if (isset($_GET['ID'])) {
 <body>
     <nav>
         <ul>
-            <li><a href="stuClassList.php?unset_session=true">Dashboard</a></li>
+            <li><a href="SOD.php?unset_session=true">Dashboard</a></li>
             <li><a href="../index.html">Log Out</a></li>
         </ul>
     </nav>
@@ -36,8 +36,7 @@ if (isset($_GET['ID'])) {
     echo "<h1>", $row['className'], "</h1>";
     echo "<button onclick=\"annbtn('", $ID, "')\">View Announcement</button>";
     echo "<button onclick=\"assbtn('", $ID, "')\">View Assignment</button>";
-    echo "<button onclick=\"askSOD('", $ID, "')\">Ask an SOD</button>";
-    echo "<button onclick=\"viewAns('", $ID, "')\">SOD Answer Forum</button>";
+    echo "<button onclick=\"askSOD('", $ID, "')\">Answer Queries</button>";
     ?>
     <script>
         function annbtn(ID) {
@@ -49,10 +48,7 @@ if (isset($_GET['ID'])) {
         }
 
         function askSOD(ID) {
-            window.location.href = 'MakeQuery.php';
-        }
-        function viewAns(ID) {
-            window.location.href = 'ViewAns.php';
+            window.location.href = 'AnsQuery.php';
         }
     </script>
 </body>

@@ -1,0 +1,138 @@
+<?php
+include('../dbconn.php');
+session_start();
+$data = json_decode($_SESSION['JSON']);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Class Moderator</title>
+</head>
+
+<body>
+    <div class="side-menu">
+        <div class="menu">
+            <h1>Menu</h1>
+        </div>
+        <ul>
+            <li> <span>Dashboard</span> </li>
+            <li><a href="student.html"><span>Students</span></a></li>
+            <li><a href="teacher.html"><span>Teachers</span></a> </li>
+            <li><a href="class.html"><span>Classes</span></a> </li>
+            
+        </ul>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="nav">
+                <div class="search">
+                    <input type="text" placeholder="Search..">
+                    <button type="submit"><img src="search.png" alt=""></button>
+                </div>
+                <div class="user">
+                    <a href="#" class="btn">Add New</a>
+                    <img src="noti.png" alt="">
+                    <div class="img-case">
+                        <img src="icon.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="cards">
+                <div class="card">
+                    <div class="box">
+                        <h1>434</h1>
+                        <h3>Students</h3>
+                    </div>
+                    <div class="icon-case">
+                        <img src="students.png" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>12</h1>
+                        <h3>Teachers</h3>
+                    </div>
+                    <div class="icon-case">
+                        <img src="teachers.png" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>3</h1>
+                        <h3>Department</h3>
+                    </div>
+                    <div class="icon-case">
+                        <img src="schools.png" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1>35</h1>
+                        <h3>Student on Duty</h3>
+                    </div>
+                    <div class="icon-case">
+                        <img src="income.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="content-2">
+                <div class="notice">
+                    <div class="title">
+                        <h2>Notice!</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <tr>
+                            <td><p><strong>1. Reminder of Upcoming Test:</strong> Good morning, everyone! Just a friendly reminder that we have a test scheduled for this Friday on chapters 5-8. Make sure to review your notes and textbook readings to prepare adequately.</p></td></tr>
+                            <tr><td><p><strong>2. Change in Schedule:</strong> Attention, class! Please note that tomorrow's lecture will be rescheduled to next Monday due to a faculty meeting. Make sure to adjust your calendars accordingly.</p></td></tr>
+                            <td><p><strong>3. Assignment Submission Deadline Extension: </strong>Hello, students! In light of recent technical issues with the online submission portal, the deadline for the research paper has been extended to next Friday at midnight. Please use this extra time wisely to polish your work.</p></td>
+                            
+                        </tr>
+                        
+                        
+                        
+                    </table>
+                </div>
+                <div class="new-students">
+                    <div class="title">
+                        <h2>New Students</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Profile</th>
+                            <th>Name</th>
+                            <th>option</th>
+                        </tr>
+                        <tr>
+                            <td><img src="girl1.png" alt=""></td>
+                            <td>Mariam Masud</td>
+                            
+                        </tr>
+                        <tr>
+                            <td><img src="girl2.png" alt=""></td>
+                            <td>Aurisha Mehek</td>
+                            
+                        </tr>
+                        <tr>
+                            <td><img src="girl3.png" alt=""></td>
+                            <td>Sadia Islam</td>
+                            
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

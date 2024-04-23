@@ -29,11 +29,6 @@ $data = json_decode($_SESSION['JSON']);
 
     <nav>
         <ul>
-            <!-- <li><a href="AssignmentList.php">Assignment List</a></li>
-            <li><a href="Assignment.php">Assignment</a></li>
-            <li><a href="Class.php">Class</a></li>
-            <li><a href="MakeAnnouncement.php">Make Announcement</a></li>
-            <li><a href="PostAssignment.php">Post Assignment</a></li> -->
             <li><a href="ClassList.php">Dashboard</a></li>
             <li><a href="../index.html">Log Out</a></li>
         </ul>
@@ -60,25 +55,12 @@ $data = json_decode($_SESSION['JSON']);
             }
             ?>
         </div>
-
-
-        ?>
-
     </div>
     <div class="background-container"></div>
     <script>
         function btnGo(ID) {
             window.location.href = 'Class.php?ID=' + ID;
         }
-        // function btnGo(ID) {
-        //     document.write(ID);
-        //     <?php
-        //         $data["class"] = $ID;
-        //         $_SESSION['JSON'] = json_encode($data);
-        //         header('Location: Teacher/ClassList.php');
-        //         echo json_encode($data);
-        //     ?>
-        // }
     </script>
 </body>
 

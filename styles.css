@@ -147,3 +147,14 @@ nav ul li a:hover {
     color: #fff;
     font-size: 104%;
 }
+
+#SODMode {
+    position: absolute;
+    top: 1px;
+    left: 20px;
+    height: fit-content;
+    width: fit-content;
+    border-radius: 1px;
+    border: 2px solid black !important;
+    transition: 0.25s cubic-bezier(0.215, 0.610, 0.355, 1);
+}

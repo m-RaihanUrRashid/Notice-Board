@@ -18,6 +18,7 @@
             padding: 30px;
             
         }
+
         .announ{
             border: 5px solid #603d28;
             border-radius: 5px;
@@ -32,7 +33,7 @@
 <body>
     <nav>
         <ul>
-            <li><a href="stuClassList.php?unset_session=true">Dashboard</a></li>
+            <li><a href="SOD.php?unset_session=true">Dashboard</a></li>
             <li><a href="stuClass.php">Back to Class</a></li>
             <li><a href="../index.html">Log Out</a></li>
         </ul>
@@ -47,7 +48,6 @@
     ?>
     <div id="annBox">
         <?php
-
         $sql = "SELECT assID, title, description, deadline, createdAt FROM assignment WHERE classID = '$ID'";
         $asslist = mysqli_query($conn, $sql);
         if(mysqli_num_rows($asslist) == 0){
@@ -62,13 +62,9 @@
                 echo "</div>";
                 echo "<div id='submitBox' style='display: inline-block; width: 20%;'>";
                 echo "<p style='font-size: 13px;'>Due Date: " . $ass['deadline'] . "</p><br><br>";
-                echo "<form action='SubmittedAss.php' method='POST'>";
-                echo "<input type='hidden' name='assID' value='" . $ass['assID'] . "'>";
-                echo "<button type='submit' style=\"border: 1px solid black;\">View assignments</button>";
-                echo "</form>";
                 echo "</div>";
                 echo "</div>";
-
+                echo "<br>";
             }
         }
         ?>

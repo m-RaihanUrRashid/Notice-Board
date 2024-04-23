@@ -9,8 +9,7 @@ $phone = $_POST['phone'];
 $dept = $_POST['dept'];
 $minor = $_POST['minor'];
 $enrollDate = $_POST['enrollDate'];
-$isSOD = $_POST['isSOD'];
-
+$isSOD = ($_POST['isSOD'] == 'Y') ? 1 : 0;
 
 $userRole = "Student";
 $sqlUser = "INSERT INTO user (userID, name, password, email, phone, role) 
