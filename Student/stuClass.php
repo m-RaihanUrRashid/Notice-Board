@@ -1,9 +1,16 @@
+<?php
+    include('../dbconn.php');
+    session_start();
+    ob_start();
+    $data = json_decode($_SESSION['JSON']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classroom [1]</title>
+    <title>Class View</title>
     <link rel="stylesheet"  href="../styles.css">
 </head>
 <body>
@@ -36,9 +43,16 @@
         $classname = mysqli_query($conn, $sql1);
         $row = mysqli_fetch_assoc($classname);
         echo "<h1>", $row['className'], "</h1>";
-    ?>
-    <button onclick="location.href='MakeAnnouncement.php'">Make Announcement</button> 
-    <button onclick="location.href='PostAssignment.php'">Post Assignment</button> 
-    <button onclick="location.href='AssignmentList.php'">All Assignments</button> 
+        //echo "<button onclick=\"location.href='ViewAnnouncement.php?classID=' +", $ID,"'\">View Announcement</button>"
+        echo "<button onclick=\"annbtn('", $ID,"')\">View Announcement</button>"
+
+        
+        //<button onclick="location.href='ViewAssignment.php'">View Assignment</button> 
+        //<button onclick="location.href='MakeQuery.php'">Ask an SOD</button> ?>
+        <script>
+            function annbtn(ID) {
+                window.location.href = 'ViewAnnouncement.php?classID=' + ID;
+            }
+        </script>
 </body>
 </html>

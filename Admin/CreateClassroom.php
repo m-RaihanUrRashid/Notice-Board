@@ -63,7 +63,7 @@
     <input type="text" id="semester" name="semester" required>
 
     <label for="SODid">SOD ID:</label>
-    <input type="SODid" id="SODid" name="SODid" required>
+    <input type="SODid" id="SODid" name="SODid">
 
 
     <label for="isActive">Active?</label>

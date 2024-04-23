@@ -51,6 +51,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header('Location: Teacher/ClassList.php');
                     echo json_encode($response);
                 }
+                if ($Srole == "Student") {
+                    $response = array(
+                        "success" => true,
+                        "userID" => $row["userID"],
+                        "name" => $row["name"],
+                        "email" => $row["email"],
+                        "phone" => $row["phone"],
+                        "dept" => $row["dept"],
+                        //"officeNo" => $row["officeNo"],
+                        "isSOD" => $row["isSOD"]
+                    );
+                    $_SESSION['JSON'] = json_encode($response);
+                    header('Location: Student/stuClassList.php');
+                    echo json_encode($response);
+                }
             } else {
                 $response = array("success" => false);
                 header('Content-Type: application/json');

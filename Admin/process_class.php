@@ -11,9 +11,19 @@ $isActive = $_POST['isActive'];
 $sqlTeacherCheck = "SELECT * FROM user WHERE userID = '$teacherID' AND role = 'Teacher'";
 $resultTeacherCheck = $conn->query($sqlTeacherCheck);
 
-
 $sqlStudentCheck = "SELECT * FROM user WHERE userID = '$SODid' AND role = 'Student'";
 $resultStudentCheck = $conn->query($sqlStudentCheck);
+
+// $num = 0;
+// if($SODid != ""){
+//     $sqlStudentCheck = "SELECT * FROM user WHERE userID = '$SODid' AND role = 'Student'";
+//     $resultStudentCheck = $conn->query($sqlStudentCheck);
+//     if ($resultStudentCheck->num_rows > 0){
+//         $num = 1;
+//     }
+// }else{
+//     $num = 1;
+// }
 
 if ($resultTeacherCheck->num_rows > 0 && $resultStudentCheck->num_rows > 0) {
     $sqlClassroom = "INSERT INTO classroom (classID, className, teacherID, semester, isActive, SODid) 

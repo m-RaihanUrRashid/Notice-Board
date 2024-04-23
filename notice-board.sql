@@ -34,6 +34,7 @@ CREATE TABLE `announcement` (
   `annID` int(20) NOT NULL,
   `title` varchar(50) NOT NULL,
   `content` text NOT NULL,
+  `classID` int(10) NOT NULL,
   `createdBy` int(10) NOT NULL,
   `createdAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -362,6 +363,8 @@ ALTER TABLE `submission`
 --
 ALTER TABLE `announcement`
   ADD CONSTRAINT `fk_ann1` FOREIGN KEY (`createdBy`) REFERENCES `teacher` (`teacherID`);
+  ADD CONSTRAINT `fk_ann1` FOREIGN KEY (`classID`) REFERENCES `classroom` (`classID`);
+
 
 --
 -- Constraints for table `assignment`
