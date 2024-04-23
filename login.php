@@ -52,19 +52,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo json_encode($response);
                 }
                 if ($Srole == "Student") {
-                    $response = array(
-                        "success" => true,
-                        "userID" => $row["userID"],
-                        "name" => $row["name"],
-                        "email" => $row["email"],
-                        "phone" => $row["phone"],
-                        "dept" => $row["dept"],
-                        //"officeNo" => $row["officeNo"],
-                        "isSOD" => $row["isSOD"]
-                    );
-                    $_SESSION['JSON'] = json_encode($response);
-                    header('Location: Student/stuClassList.php');
-                    echo json_encode($response);
+                    $stuSql = "SELECT * FROM student WHERE studentID = $userID";
+                    $stuResult = mysqli_query($conn, $stuSql);
+                    if ($stuResult) {
+                        if (mysqli_num_rows($stuResult) > 0) {
+                            $row2 = mysqli_fetch_assoc($stuResult);
+                            $response = array(
+                                "success" => true,
+                                "userID" => $row["userID"],
+                                "name" => $row["name"],
+                                "email" => $row["email"],
+                                "phone" => $row["phone"],
+                                "dept" => $row2["dept"],
+                                "isSOD" => $row2["isSOD"]
+                            );
+                            $_SESSION['JSON'] = json_encode($response);
+                            header('Location: Student/stuClassList.php');
+                            echo json_encode($response);
+                        }
+                    }
                 }
             } else {
                 $response = array("success" => false);
