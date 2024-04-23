@@ -23,6 +23,9 @@
             border-radius: 5px;
             padding: 30px;
         }
+        p{
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -33,13 +36,14 @@
             <li><a href="Class.php">Class</a></li>
             <li><a href="MakeAnnouncement.php">Make Announcement</a></li>
             <li><a href="PostAssignment.php">Post Assignment</a></li> -->
-            <li><a href="ClassList.php">Dashboard</a></li>
-            <li><a href="#" onclick="history.back();">Back to Class</a></li>
+            <li><a href="stuClassList.php?unset_session=true">Dashboard</a></li>
+            <li><a href="stuClass.php">Back to Class</a></li>
             <li><a href="../index.html">Log Out</a></li>
         </ul>
     </nav>
     <?php
-        $ID = $_GET['classID'];
+        //  $ID = $_GET['classID'];
+        $ID = $_SESSION['classID'];
 
         $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
         $classname = mysqli_query($conn, $sql1);
@@ -61,16 +65,15 @@
 
         
 
-        $sql = "SELECT title, content, createdBy, createdAt FROM announcement WHERE classID = '$ID'";
+        $sql = "SELECT title, content, createdAt FROM announcement WHERE classID = '$ID'";
         $annlist = mysqli_query($conn, $sql);
-        if(mysqli_fetch_array($annlist) == 0){
+        if(mysqli_num_rows($annlist) == 0){
             echo "<div class=announ style=\"text-align: center;\"> No announcements yet. </div><br>";
         }else{
             while ($ann = mysqli_fetch_array($annlist)) {
-                echo "<div class=announ>";
-                echo "<img src=\"img.jpeg\"><strong>", $ann['createdBy'], "</strong> <br>",  $ann['createdAt'];
-                echo "<h3>" , $ann['title'], "</h3>";
-                echo "<p>" , $ann['content'], "</p>";
+                echo "<div class=announ>";  
+                echo "<h3>" , $ann['title'], "</h3>", $ann['createdAt'];
+                echo "<br><br><p>" , $ann['content'], "</p>";
                 echo "</div><br>";
             }
         }

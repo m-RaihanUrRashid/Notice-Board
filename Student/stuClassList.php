@@ -1,8 +1,11 @@
 <?php
-include('../dbconn.php');
-session_start();
-ob_start();
-$data = json_decode($_SESSION['JSON']);
+    include('../dbconn.php');
+    session_start();
+    ob_start();
+    $data = json_decode($_SESSION['JSON']);
+    if (isset($_GET['unset_session']) && $_GET['unset_session'] === 'true') {
+        unset($_SESSION['classID']);
+    }
 ?>
 
 <!DOCTYPE html>

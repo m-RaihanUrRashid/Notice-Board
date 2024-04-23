@@ -1,3 +1,10 @@
+<?php
+    include('../dbconn.php');
+    session_start();
+    ob_start();
+    $data = json_decode($_SESSION['JSON']); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

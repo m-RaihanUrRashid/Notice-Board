@@ -3,6 +3,11 @@
     session_start();
     ob_start();
     $data = json_decode($_SESSION['JSON']);
+
+    if (isset($_GET['ID'])) {
+        $ID = $_GET['ID'];
+        $_SESSION['classID'] = $ID;
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -32,26 +37,35 @@
             <li><a href="Class.php">Class</a></li>
             <li><a href="MakeAnnouncement.php">Make Announcement</a></li>
             <li><a href="PostAssignment.php">Post Assignment</a></li> -->
-            <li><a href="ClassList.php">Dashboard</a></li>
+            <li><a href="stuClassList.php?unset_session=true">Dashboard</a></li>
             <li><a href="../index.html">Log Out</a></li>
         </ul>
     </nav>
 
     <?php 
-        $ID = $_GET['ID'];
+        $ID = $_SESSION['classID'];
         $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
         $classname = mysqli_query($conn, $sql1);
         $row = mysqli_fetch_assoc($classname);
         echo "<h1>", $row['className'], "</h1>";
         //echo "<button onclick=\"location.href='ViewAnnouncement.php?classID=' +", $ID,"'\">View Announcement</button>"
-        echo "<button onclick=\"annbtn('", $ID,"')\">View Announcement</button>"
+        echo "<button onclick=\"annbtn('", $ID,"')\">View Announcement</button>";
+        echo "<button onclick=\"assbtn('", $ID,"')\">View Assignment</button>";
+        echo "<button onclick=\"askSOD('", $ID,"')\">Ask an SOD</button>";
+
 
         
         //<button onclick="location.href='ViewAssignment.php'">View Assignment</button> 
         //<button onclick="location.href='MakeQuery.php'">Ask an SOD</button> ?>
         <script>
             function annbtn(ID) {
-                window.location.href = 'ViewAnnouncement.php?classID=' + ID;
+                window.location.href = 'ViewAnnouncement.php';
+            }
+            function assbtn(ID) {
+                window.location.href = 'ViewAssignment.php';
+            }
+            function askSOD(ID) {
+                window.location.href = 'MakeQuery.php';
             }
         </script>
 </body>
