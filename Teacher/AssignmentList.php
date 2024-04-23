@@ -18,9 +18,6 @@
             padding: 30px;
             
         }
-        #submitBox{
-
-        }
         .announ{
             border: 5px solid #603d28;
             border-radius: 5px;
@@ -35,11 +32,6 @@
 <body>
     <nav>
         <ul>
-            <!-- <li><a href="AssignmentList.php">Assignment List</a></li>
-            <li><a href="Assignment.php">Assignment</a></li>
-            <li><a href="Class.php">Class</a></li>
-            <li><a href="MakeAnnouncement.php">Make Announcement</a></li>
-            <li><a href="PostAssignment.php">Post Assignment</a></li> -->
             <li><a href="stuClassList.php?unset_session=true">Dashboard</a></li>
             <li><a href="stuClass.php">Back to Class</a></li>
             <li><a href="../index.html">Log Out</a></li>
@@ -55,18 +47,6 @@
     ?>
     <div id="annBox">
         <?php
-        // $queryID = $data->userID;
-        // $sql = "SELECT classID FROM enroll WHERE studentID = '$queryID'";
-        // $course_list = mysqli_query($conn, $sql);
-        // while ($class = mysqli_fetch_array($course_list)) {
-        //     $ID = $class['classID'];
-        //     $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
-        //     $classname = mysqli_query($conn, $sql1);
-        //     $row = mysqli_fetch_assoc($classname);
-        //     echo "<button onclick=\"btnGo('", $ID, "')\">", $row['className'], "</button>";
-        // }
-
-        
 
         $sql = "SELECT assID, title, description, deadline, createdAt FROM assignment WHERE classID = '$ID'";
         $asslist = mysqli_query($conn, $sql);
@@ -92,21 +72,6 @@
             }
         }
         ?>
-        <!-- <div class="announ d-flex">
-            <div style="display: inline-block; width: 75%; vertical-align: top;">
-                <h3>$ass['title']; ?></h3>
-                <p>$ass['createdAt']; ?></p>
-                <p>$ass['description']; ?></p>
-            </div>
-            <div style="display: inline-block; width: 20%;">
-                <form action="submit_assignment.php" method="POST">
-                    <p style= "font-size:13px;">Due Date: $ass['deadline']; ?></p><br><br>
-                    <label for="textbox" style="font-size: 13px">Enter your Google drive link:</label>
-                    <input type="text" id="textbox" name="textbox" size="100"><br><br>
-                    <button type="submit">Turn in</button>
-                </form>
-            </div>
-        </div>-->
     </div> 
 </body>
 </html>

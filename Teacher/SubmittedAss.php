@@ -1,117 +1,96 @@
 <?php
-    include('../dbconn.php');
-    session_start();
-    ob_start();
-    $data = json_decode($_SESSION['JSON']);
+include('../dbconn.php');
+session_start();
+ob_start();
+$data = json_decode($_SESSION['JSON']);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignments List</title>
-    <link rel="stylesheet"  href="../styles.css">
+    <link rel="stylesheet" href="../styles.css">
 
     <style>
-        #annBox{
+        #annBox {
             padding: 30px;
-            
-        }
-        #submitBox{
 
         }
-        .announ{
+
+        .announ {
             border: 5px solid #603d28;
             border-radius: 5px;
             padding: 20px;
         }
 
-        p{
+        p {
             text-align: left;
         }
     </style>
 </head>
+
 <body>
     <nav>
         <ul>
-            <!-- <li><a href="AssignmentList.php">Assignment List</a></li>
-            <li><a href="Assignment.php">Assignment</a></li>
-            <li><a href="Class.php">Class</a></li>
-            <li><a href="MakeAnnouncement.php">Make Announcement</a></li>
-            <li><a href="PostAssignment.php">Post Assignment</a></li> -->
-            <li><a href="stuClassList.php?unset_session=true">Dashboard</a></li>
-            <li><a href="stuClass.php">Back to Class</a></li>
+            <li><a href="ClassList.php?unset_session=true">Dashboard</a></li>
+            <li><a href="Class.php">Back to Class</a></li>
             <li><a href="../index.html">Log Out</a></li>
         </ul>
     </nav>
     <?php
-        $ID = $_SESSION['classID'];
-        
-        $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
-        $classname = mysqli_query($conn, $sql1);
-        $row = mysqli_fetch_assoc($classname);
-        echo "<h1>", $row['className'], "</h1>";
+    $ID = $_SESSION['classID'];
+
+    $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
+    $classname = mysqli_query($conn, $sql1);
+    $row = mysqli_fetch_assoc($classname);
+    echo "<h1>", $row['className'], "</h1>";
     ?>
     <div id="annBox">
         <?php
-        // $queryID = $data->userID;
-        // $sql = "SELECT classID FROM enroll WHERE studentID = '$queryID'";
-        // $course_list = mysqli_query($conn, $sql);
-        // while ($class = mysqli_fetch_array($course_list)) {
-        //     $ID = $class['classID'];
-        //     $sql1 = "SELECT className FROM classroom WHERE classID = '$ID'";
-        //     $classname = mysqli_query($conn, $sql1);
-        //     $row = mysqli_fetch_assoc($classname);
-        //     echo "<button onclick=\"btnGo('", $ID, "')\">", $row['className'], "</button>";
-        // }
-
         $assID = $_POST['assID'];
 
         $sql = "SELECT * FROM submission WHERE assID = '$assID'";
         $asslist = mysqli_query($conn, $sql);
-        if(mysqli_num_rows($asslist) == 0){
+        if (mysqli_num_rows($asslist) == 0) {
             echo "<div class=announ style=\"text-align: center;\"> No submissions yet. </div><br>";
-        }else{
+        } else {
             while ($ass = mysqli_fetch_array($asslist)) {
                 $stuID = $ass['studentID'];
                 $sql1 = "SELECT name FROM user WHERE userID = '$stuID'";
-        $query = mysqli_query($conn, $sql1);
-        $student = mysqli_fetch_assoc($query);
+                $query = mysqli_query($conn, $sql1);
+                $student = mysqli_fetch_assoc($query);
                 echo "<div class='announ d-flex'>";
                 echo "<div style='display: inline-block; width: 75%; vertical-align: top;'>";
                 echo "<h3>" . $student['name'] . "</h3>";
                 echo "<p>" . $ass['subDate'] . "</p><br><br>";
-                echo "<p>" . $ass['filelink'] . "</p>";
+                echo "<p><a href=" . $ass['filelink'] . ">Link of student submission</a></p>";
                 echo "</div>";
+
                 echo "<div id='submitBox' style='display: inline-block; width: 20%;'>";
-                echo "<form action='submit_assignment.php' method='POST'>";
+                echo "<form action='sub_ass.php' method='POST'>";
                 echo "<input type='hidden' name='assID' value='" . $ass['assID'] . "'>";
-                
                 echo "<label for='textbox' style='font-size: 13px;'>Enter Grade:</label>";
-                echo "<input type='text' id='textbox' name='linkBox' size='100' style=\"background-color: rgba(255, 255, 255, 0.6); border: 2px solid #603d28;\" required><br><br>";
-                echo "<button type='submit' style=\"border: 1px solid black;\">Grade</button>";
+
+                if ($ass['grade'] == NULL) {
+                    echo "<textarea id='gradeBox' name='gradeBox' style=\"background-color: rgba(255, 255, 255, 0.6); border: 2px solid #603d28; height: 100px; width: 200px;\" required></textarea><br><br>";
+                    echo "<button type='submit' style=\"border: 1px solid black;\">Grade</button>";
+                } else {
+                    // $sql1 = "SELECT grade FROM submission WHERE assID = '" . $ass['assID'] . "'";
+                    // $query = mysqli_query($conn, $sql1);
+                    // $grade = mysqli_fetch_assoc($query);
+                    echo "<textarea id='gradeBox' name='gradeBox' style=\"background-color: #ebe894; border: 2px solid #603d28; height: 100px; width: 200px;\" required disabled>" . $grade . "</textarea><br><br>";
+                    echo "<button type='submit' style=\"border: 1px solid black;\" disabled>Submit Answer</button>";
+                }
                 echo "</form>";
                 echo "</div>";
                 echo "</div>";
             }
         }
         ?>
-        <!-- <div class="announ d-flex">
-            <div style="display: inline-block; width: 75%; vertical-align: top;">
-                <h3>$ass['title']; ?></h3>
-                <p>$ass['createdAt']; ?></p>
-                <p>$ass['description']; ?></p>
-            </div>
-            <div style="display: inline-block; width: 20%;">
-                <form action="submit_assignment.php" method="POST">
-                    <p style= "font-size:13px;">Due Date: $ass['deadline']; ?></p><br><br>
-                    <label for="textbox" style="font-size: 13px">Enter your Google drive link:</label>
-                    <input type="text" id="textbox" name="textbox" size="100"><br><br>
-                    <button type="submit">Turn in</button>
-                </form>
-            </div>
-        </div>-->
-    </div> 
+    </div>
 </body>
+
 </html>
