@@ -61,13 +61,7 @@
                 echo "<p>" . $ass['description'] . "</p>";
                 echo "</div>";
                 echo "<div id='submitBox' style='display: inline-block; width: 20%;'>";
-                // echo "<form action='submit_assignment.php' method='POST'>";
-                // echo "<input type='hidden' name='assID' value='" . $ass['assID'] . "'>";
                 echo "<p style='font-size: 13px;'>Due Date: " . $ass['deadline'] . "</p><br><br>";
-                // echo "<label for='textbox' style='font-size: 13px;'>Enter your Google drive link:</label>";
-                // echo "<input type='text' id='textbox' name='linkBox' size='100' style=\"background-color: rgba(255, 255, 255, 0.6); border: 2px solid #603d28;\" required><br><br>";
-                // echo "<button type='submit' style=\"border: 1px solid black;\">Turn in</button>";
-                // echo "</form>";
                 echo "</div>";
                 echo "</div>";
                 echo "<br>";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2024 at 07:54 PM
+-- Generation Time: Apr 23, 2024 at 08:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,6 +67,25 @@ INSERT INTO `assignment` (`assID`, `classID`, `title`, `description`, `deadline`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `classmod`
+--
+
+DROP TABLE IF EXISTS `classmod`;
+CREATE TABLE `classmod` (
+  `modID` int(10) NOT NULL,
+  `dept` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `classmod`
+--
+
+INSERT INTO `classmod` (`modID`, `dept`) VALUES
+(8, 'CSE');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `classroom`
 --
 
@@ -85,9 +104,9 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`classID`, `className`, `teacherID`, `semester`, `isActive`, `SODid`) VALUES
-(2, 'Discrete Mathematics', 3, 'Summer', 1, 2),
+(2, 'Discrete Mathematics', 3, 'Summer', 1, NULL),
 (3, 'Object Oriented Programming', 3, 'Summer', 1, 7),
-(9, 'Finite Automata', 6, 'Summer ', 0, 2);
+(9, 'Finite Automata', 6, 'Summer ', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -177,6 +196,14 @@ CREATE TABLE `sodapplication` (
   `type` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `sodapplication`
+--
+
+INSERT INTO `sodapplication` (`SODid`, `classID`, `details`, `type`) VALUES
+(7, 2, 'I want money', 'Application'),
+(7, 3, 'Bhai maaf chai', 'Resignation');
+
 -- --------------------------------------------------------
 
 --
@@ -262,13 +289,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `name`, `password`, `email`, `phone`, `role`) VALUES
+(0, 'Kram', '$2y$10$BCEXIVE3hhTl2kwlnN7S4OgEUsL7aCvUy.eVAeBw3UMdhBnih1Fqa', 'kram@mail.com', '+8801234567891', 'ClassMod'),
 (1, 'admin', '$2y$10$SuVxt/0Kkvnj.ZGRpSQjr./wPyqa/cS2zuRXHjZPShv2MsXl4rbUm', 'sldjl@gmail.com', '0171012309', 'Admin'),
 (2, 'fgdsgsdf', 'adsfsdf', 'asdfsdf', 'asdfdf', 'Student'),
 (3, 'sdasdf', 'dsfsadf', 'asdfsadf', 'adsfsadf', 'asdfsdf'),
 (4, 'Raihan', '$2y$10$znQyUdPU5toYVX.nlefiqe9fbZC8jfPE5iva8fnmSJPyCjyiCZB8a', 'raihan@gmail.com', '01714489525', 'Student'),
 (5, 'Gaji', '$2y$10$YljZ.mRiwEIE2Myunm5OK.OTjsdFHXST3TgoZYzZiLTqh/89R1R9C', 'gazi@tank.com', '323232341', 'Student'),
 (6, 'Dhara', '$2y$10$oN1IyjY0FQaqmgAGzOy87.doodHM6Z3bB3Ytin6svI7KtgZ7IdEIe', '', '01714489525', 'Teacher'),
-(7, 'Ikram', '$2y$10$wWr4mXbS3y8eUg5cFCHURO5CDSgS1NZ4SFZMMu.YecxEPuHcVa7pm', 'ikram@abc.com', '012345678911', 'Student');
+(7, 'Ikram', '$2y$10$wWr4mXbS3y8eUg5cFCHURO5CDSgS1NZ4SFZMMu.YecxEPuHcVa7pm', 'ikram@abc.com', '012345678911', 'Student'),
+(8, 'Kram', '$2y$10$1UsvxLZ5qscD7sWHhJot3.BjQ4sz.x1gM/WB6r3gpBLydgfsV.lR.', 'kram@mail.com', '+8801234567891', 'ClassMod');
 
 --
 -- Indexes for dumped tables
@@ -288,6 +317,13 @@ ALTER TABLE `announcement`
 ALTER TABLE `assignment`
   ADD PRIMARY KEY (`assID`),
   ADD KEY `fk_ass1` (`classID`);
+
+--
+-- Indexes for table `classmod`
+--
+ALTER TABLE `classmod`
+  ADD PRIMARY KEY (`modID`),
+  ADD KEY `modID` (`modID`);
 
 --
 -- Indexes for table `classroom`
@@ -416,6 +452,12 @@ ALTER TABLE `announcement`
 --
 ALTER TABLE `assignment`
   ADD CONSTRAINT `fk_ass1` FOREIGN KEY (`classID`) REFERENCES `classroom` (`classID`);
+
+--
+-- Constraints for table `classmod`
+--
+ALTER TABLE `classmod`
+  ADD CONSTRAINT `classmod_ibfk_1` FOREIGN KEY (`modID`) REFERENCES `user` (`userID`);
 
 --
 -- Constraints for table `classroom`

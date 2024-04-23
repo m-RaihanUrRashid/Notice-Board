@@ -11,7 +11,7 @@ $data = json_decode($_SESSION['JSON']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignments List</title>
+    <title>Answer Query</title>
     <link rel="stylesheet" href="../styles.css">
 
     <style>

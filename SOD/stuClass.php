@@ -37,11 +37,6 @@ if (isset($_GET['ID'])) {
     echo "<button onclick=\"annbtn('", $ID, "')\">View Announcement</button>";
     echo "<button onclick=\"assbtn('", $ID, "')\">View Assignment</button>";
     echo "<button onclick=\"askSOD('", $ID, "')\">Answer Queries</button>";
-
-
-
-    //<button onclick="location.href='ViewAssignment.php'">View Assignment</button> 
-    //<button onclick="location.href='MakeQuery.php'">Ask an SOD</button> 
     ?>
     <script>
         function annbtn(ID) {

@@ -42,11 +42,6 @@ if (isset($_GET['unset_session']) && $_GET['unset_session'] === 'true') {
                 }
             };
             ?>
-            <!-- <li><a href="AssignmentList.php">Assignment List</a></li>
-            <li><a href="Assignment.php">Assignment</a></li>
-            <li><a href="Class.php">Class</a></li>
-            <li><a href="MakeAnnouncement.php">Make Announcement</a></li>
-            <li><a href="PostAssignment.php">Post Assignment</a></li> -->
             <li><a href="stuClassList.php">Dashboard</a></li>
             <li><a href="../index.html">Log Out</a></li>
         </ul>
@@ -69,6 +64,7 @@ if (isset($_GET['unset_session']) && $_GET['unset_session'] === 'true') {
             echo "<button onclick=\"btnGo('", $ID, "')\">", $row['className'], "</button>";
         }
         ?>
+        <button onclick="apply()">Apply as SOD</button>
     </div>
 
     <div class="background-container"></div>
@@ -76,16 +72,10 @@ if (isset($_GET['unset_session']) && $_GET['unset_session'] === 'true') {
         function btnGo(ID) {
             window.location.href = 'stuClass.php?ID=' + ID;
         }
-        // function btnGo(ID) {
-        //     document.write(ID);
-        //     <?php
-                //         $data["class"] = $ID;
-                //         $_SESSION['JSON'] = json_encode($data);
-                //         header('Location: Teacher/ClassList.php');
-                //         echo json_encode($data);
-                //     
-                ?>
-        // }
+
+        function apply() {
+            window.location.href = 'applySOD.php';
+        }
     </script>
 </body>
 
