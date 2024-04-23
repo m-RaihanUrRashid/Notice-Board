@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2024 at 07:34 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Apr 23, 2024 at 10:09 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -77,7 +77,9 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`classID`, `className`, `teacherID`, `semester`, `isActive`, `SODid`) VALUES
-(2344, 'Mr Jekyll', 45, 'summer 25 ', 0, 14);
+(2, 'Discrete Mathematics', 3, 'Summer', 1, 2),
+(3, 'Object Oriented Programming', 3, 'Summer', 1, 2),
+(9, 'Finite Automata', 6, 'Summer ', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -94,14 +96,25 @@ CREATE TABLE `depthead` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enrol`
+-- Table structure for table `enroll`
 --
 
-DROP TABLE IF EXISTS `enrol`;
-CREATE TABLE `enrol` (
+DROP TABLE IF EXISTS `enroll`;
+CREATE TABLE `enroll` (
+  `id` int(10) NOT NULL,
   `studentID` int(10) NOT NULL,
   `classID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `enroll`
+--
+
+INSERT INTO `enroll` (`id`, `studentID`, `classID`) VALUES
+(3, 2, 2),
+(4, 2, 3),
+(5, 4, 2),
+(6, 4, 3);
 
 -- --------------------------------------------------------
 
@@ -165,8 +178,10 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`studentID`, `dept`, `minor`, `enrollDate`, `isSOD`) VALUES
-(0, '', '', '0000-00-00', 0),
-(14, 'CSE', 'CMN', '2024-04-23', 0);
+(2, 'dsadas', 'sadasd', '2024-04-11', 2),
+(3, 'cse', 'mis', '2024-04-24', 0),
+(4, 'cse', 'mis', '2024-04-09', 0),
+(5, 'cse', 'cmn', '2024-04-25', 0);
 
 -- --------------------------------------------------------
 
@@ -203,8 +218,8 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`teacherID`, `dept`, `officeNo`, `isHead`) VALUES
-(45, 'CSE', '4', 0),
-(69, 'CSE', '4', 0);
+(3, 'fgsdfg', 'sfgd', 1),
+(6, 'cse', '56', 0);
 
 -- --------------------------------------------------------
 
@@ -227,11 +242,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `name`, `password`, `email`, `phone`, `role`) VALUES
-(0, 'Dhara', '$2y$10$uJE30W4kL6Y6MH3mDlN0nOBKCm18cKBEy6BXMj9JdNGwja5U4X5z.', '', '', 'Student'),
-(1, 'admin', '$2y$10$X9bKsbks89BjQThcqWy5T.IEP/M3k4tpfGbggBBdf78WMeHTeWSFm', 'admin@admin.com', '+8801234567891', 'Admin'),
-(14, 'Dhara', '$2y$10$bdqJsxmdPw6uXzZ1f3gyVOMj9GA3F/w3kQ0XpDPe3vIKIdJD2S0KK', 'hyde@gmail.com', '01761149789', 'Student'),
-(45, 'Dhara', '$2y$10$NrpTOYDX.eQm3W.VFkiJK.OUYsWd.lACC.NsqqxKKGW1pWqjYoCR6', 'frank@gmail.com', '084869', 'Teacher'),
-(69, 'dhara', '$2y$10$FG6aPkiT9W4a/KsTJYCXouv6kBr2wv.Z7EqzTIELd6xtoNasLX71C', 'hyde@gmail.com', '01761149789', 'Teacher');
+(1, 'admin', '$2y$10$SuVxt/0Kkvnj.ZGRpSQjr./wPyqa/cS2zuRXHjZPShv2MsXl4rbUm', 'sldjl@gmail.com', '0171012309', 'Admin'),
+(2, 'fgdsgsdf', 'adsfsdf', 'asdfsdf', 'asdfdf', 'Student'),
+(3, 'sdasdf', 'dsfsadf', 'asdfsadf', 'adsfsadf', 'asdfsdf'),
+(4, 'Raihan', '$2y$10$znQyUdPU5toYVX.nlefiqe9fbZC8jfPE5iva8fnmSJPyCjyiCZB8a', 'raihan@gmail.com', '01714489525', 'Student'),
+(5, 'Gaji', '$2y$10$YljZ.mRiwEIE2Myunm5OK.OTjsdFHXST3TgoZYzZiLTqh/89R1R9C', 'gazi@tank.com', '323232341', 'Student'),
+(6, 'Dhara', '$2y$10$oN1IyjY0FQaqmgAGzOy87.doodHM6Z3bB3Ytin6svI7KtgZ7IdEIe', '', '01714489525', 'Teacher');
 
 --
 -- Indexes for dumped tables
@@ -242,7 +258,8 @@ INSERT INTO `user` (`userID`, `name`, `password`, `email`, `phone`, `role`) VALU
 --
 ALTER TABLE `announcement`
   ADD PRIMARY KEY (`annID`),
-  ADD KEY `fk_ann1` (`createdBy`);
+  ADD KEY `fk_ann1` (`createdBy`),
+  ADD KEY `fk_ann2` (`classID`);
 
 --
 -- Indexes for table `assignment`
@@ -267,10 +284,12 @@ ALTER TABLE `depthead`
   ADD KEY `fk_dpt` (`teacherID`);
 
 --
--- Indexes for table `enrol`
+-- Indexes for table `enroll`
 --
-ALTER TABLE `enrol`
-  ADD PRIMARY KEY (`studentID`,`classID`);
+ALTER TABLE `enroll`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `classID` (`classID`),
+  ADD KEY `studentID` (`studentID`);
 
 --
 -- Indexes for table `query`
@@ -340,7 +359,13 @@ ALTER TABLE `assignment`
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `classID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2345;
+  MODIFY `classID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `enroll`
+--
+ALTER TABLE `enroll`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `query`
@@ -362,9 +387,8 @@ ALTER TABLE `submission`
 -- Constraints for table `announcement`
 --
 ALTER TABLE `announcement`
-  ADD CONSTRAINT `fk_ann1` FOREIGN KEY (`createdBy`) REFERENCES `teacher` (`teacherID`);
-  ADD CONSTRAINT `fk_ann1` FOREIGN KEY (`classID`) REFERENCES `classroom` (`classID`);
-
+  ADD CONSTRAINT `fk_ann1` FOREIGN KEY (`createdBy`) REFERENCES `teacher` (`teacherID`),
+  ADD CONSTRAINT `fk_ann2` FOREIGN KEY (`classID`) REFERENCES `classroom` (`classID`);
 
 --
 -- Constraints for table `assignment`
@@ -384,6 +408,13 @@ ALTER TABLE `classroom`
 --
 ALTER TABLE `depthead`
   ADD CONSTRAINT `fk_dpt` FOREIGN KEY (`teacherID`) REFERENCES `teacher` (`teacherID`);
+
+--
+-- Constraints for table `enroll`
+--
+ALTER TABLE `enroll`
+  ADD CONSTRAINT `enroll_ibfk_1` FOREIGN KEY (`classID`) REFERENCES `classroom` (`classID`),
+  ADD CONSTRAINT `enroll_ibfk_2` FOREIGN KEY (`studentID`) REFERENCES `student` (`studentID`);
 
 --
 -- Constraints for table `query`
