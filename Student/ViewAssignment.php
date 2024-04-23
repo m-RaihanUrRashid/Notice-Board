@@ -18,9 +18,7 @@
             padding: 30px;
             
         }
-        #submitBox{
-
-        }
+        
         .announ{
             border: 5px solid #603d28;
             border-radius: 5px;

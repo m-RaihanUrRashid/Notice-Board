@@ -37,19 +37,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo json_encode($response);
                 }
                 if ($Srole == "Teacher") {
-                    $response = array(
-                        "success" => true,
-                        "userID" => $row["userID"],
-                        "name" => $row["name"],
-                        "email" => $row["email"],
-                        "phone" => $row["phone"],
-                        "dept" => $row["dept"],
-                        "officeNo" => $row["officeNo"],
-                        "isHead" => $row["isHead"]
-                    );
-                    $_SESSION['JSON'] = json_encode($response);
-                    header('Location: Teacher/ClassList.php');
-                    echo json_encode($response);
+                    $teachSql = "SELECT * FROM teacher WHERE teacherID = $userID";
+                    $teachResult = mysqli_query($conn, $teachSql);
+                    if ($teachResult) {
+                        if (mysqli_num_rows($teachResult) > 0) {
+                            $row2 = mysqli_fetch_assoc($teachResult);
+                            $response = array(
+                                "success" => true,
+                                "userID" => $row["userID"],
+                                "name" => $row["name"],
+                                "email" => $row["email"],
+                                "phone" => $row["phone"],
+                                "dept" => $row2["dept"],
+                                "officeNo" => $row2["officeNo"],
+                                "isHead" => $row2["isHead"]
+                            );
+                            $_SESSION['JSON'] = json_encode($response);
+                            header('Location: Teacher/ClassList.php');
+                            echo json_encode($response);
+                        }
+                    }
                 }
                 if ($Srole == "Student") {
                     $stuSql = "SELECT * FROM student WHERE studentID = $userID";
@@ -68,6 +75,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             );
                             $_SESSION['JSON'] = json_encode($response);
                             header('Location: Student/stuClassList.php');
+                            echo json_encode($response);
+                        }
+                    }
+                }
+                if ($Srole == "ClassMod") {
+                    $cmSql = "SELECT * FROM classmod WHERE modID = $userID";
+                    $cmResult = mysqli_query($conn, $cmSql);
+                    if ($cmResult) {
+                        if (mysqli_num_rows($cmResult) > 0) {
+                            $row2 = mysqli_fetch_assoc($cmResult);
+                            $response = array(
+                                "success" => true,
+                                "userID" => $row["userID"],
+                                "name" => $row["name"],
+                                "email" => $row["email"],
+                                "phone" => $row["phone"],
+                                "dept" => $row2["dept"],
+                            );
+                            $_SESSION['JSON'] = json_encode($response);
+                            header('Location: ClassMod/classmod.php');
                             echo json_encode($response);
                         }
                     }

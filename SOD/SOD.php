@@ -14,7 +14,7 @@ if (isset($_GET['unset_session']) && $_GET['unset_session'] === 'true') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>SOD Dashboard</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
         #welc {
@@ -59,12 +59,17 @@ if (isset($_GET['unset_session']) && $_GET['unset_session'] === 'true') {
             echo "<button onclick=\"btnGo('", $ID, "')\">", $class['className'], "</button>";
         }
         ?>
+        <button onclick="resign()">Resign as SOD</button>
     </div>
 
     <div class="background-container"></div>
     <script>
         function btnGo(ID) {
             window.location.href = 'stuClass.php?ID=' + ID;
+        }
+
+        function resign() {
+            window.location.href = 'resignSOD.php';
         }
     </script>
 </body>

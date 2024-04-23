@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2024 at 10:09 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Generation Time: Apr 23, 2024 at 08:59 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,6 +56,33 @@ CREATE TABLE `assignment` (
   `isGraded` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `assignment`
+--
+
+INSERT INTO `assignment` (`assID`, `classID`, `title`, `description`, `deadline`, `createdAt`, `isGraded`) VALUES
+(1, 3, 'MS1', 'Do CRA REPORT and die', '2024-04-30 21:52:12', '2024-04-23 17:52:12', 0),
+(2, 3, 'MS2', 'Do Class Diagram', '2024-05-09 21:52:47', '2024-04-23 17:52:47', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classmod`
+--
+
+DROP TABLE IF EXISTS `classmod`;
+CREATE TABLE `classmod` (
+  `modID` int(10) NOT NULL,
+  `dept` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `classmod`
+--
+
+INSERT INTO `classmod` (`modID`, `dept`) VALUES
+(8, 'CSE');
+
 -- --------------------------------------------------------
 
 --
@@ -77,9 +104,9 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`classID`, `className`, `teacherID`, `semester`, `isActive`, `SODid`) VALUES
-(2, 'Discrete Mathematics', 3, 'Summer', 1, 2),
-(3, 'Object Oriented Programming', 3, 'Summer', 1, 2),
-(9, 'Finite Automata', 6, 'Summer ', 0, 2);
+(2, 'Discrete Mathematics', 3, 'Summer', 1, NULL),
+(3, 'Object Oriented Programming', 3, 'Summer', 1, 7),
+(9, 'Finite Automata', 6, 'Summer ', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -114,7 +141,10 @@ INSERT INTO `enroll` (`id`, `studentID`, `classID`) VALUES
 (3, 2, 2),
 (4, 2, 3),
 (5, 4, 2),
-(6, 4, 3);
+(6, 4, 3),
+(7, 7, 2),
+(8, 7, 3),
+(9, 7, 9);
 
 -- --------------------------------------------------------
 
@@ -125,12 +155,20 @@ INSERT INTO `enroll` (`id`, `studentID`, `classID`) VALUES
 DROP TABLE IF EXISTS `query`;
 CREATE TABLE `query` (
   `qID` int(20) NOT NULL,
-  `SODid` int(10) NOT NULL,
+  `classID` int(20) NOT NULL,
   `studentID` int(10) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `details` text NOT NULL,
-  `answer` text NOT NULL
+  `question` text NOT NULL,
+  `answer` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `query`
+--
+
+INSERT INTO `query` (`qID`, `classID`, `studentID`, `createdAt`, `question`, `answer`) VALUES
+(2, 3, 7, '2024-04-23 18:25:26', 'hlo vya hlp pls', NULL),
+(3, 3, 7, '2024-04-23 18:50:48', 'I SAID HLP PLS VYA', 'Sorry I was busy, what is your question I can\'t help without knowing.');
 
 -- --------------------------------------------------------
 
@@ -158,6 +196,14 @@ CREATE TABLE `sodapplication` (
   `type` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `sodapplication`
+--
+
+INSERT INTO `sodapplication` (`SODid`, `classID`, `details`, `type`) VALUES
+(7, 2, 'I want money', 'Application'),
+(7, 3, 'Bhai maaf chai', 'Resignation');
+
 -- --------------------------------------------------------
 
 --
@@ -181,7 +227,8 @@ INSERT INTO `student` (`studentID`, `dept`, `minor`, `enrollDate`, `isSOD`) VALU
 (2, 'dsadas', 'sadasd', '2024-04-11', 2),
 (3, 'cse', 'mis', '2024-04-24', 0),
 (4, 'cse', 'mis', '2024-04-09', 0),
-(5, 'cse', 'cmn', '2024-04-25', 0);
+(5, 'cse', 'cmn', '2024-04-25', 0),
+(7, 'CSE', 'CMN', '2024-04-01', 1);
 
 -- --------------------------------------------------------
 
@@ -242,12 +289,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userID`, `name`, `password`, `email`, `phone`, `role`) VALUES
+(0, 'Kram', '$2y$10$BCEXIVE3hhTl2kwlnN7S4OgEUsL7aCvUy.eVAeBw3UMdhBnih1Fqa', 'kram@mail.com', '+8801234567891', 'ClassMod'),
 (1, 'admin', '$2y$10$SuVxt/0Kkvnj.ZGRpSQjr./wPyqa/cS2zuRXHjZPShv2MsXl4rbUm', 'sldjl@gmail.com', '0171012309', 'Admin'),
 (2, 'fgdsgsdf', 'adsfsdf', 'asdfsdf', 'asdfdf', 'Student'),
 (3, 'sdasdf', 'dsfsadf', 'asdfsadf', 'adsfsadf', 'asdfsdf'),
 (4, 'Raihan', '$2y$10$znQyUdPU5toYVX.nlefiqe9fbZC8jfPE5iva8fnmSJPyCjyiCZB8a', 'raihan@gmail.com', '01714489525', 'Student'),
 (5, 'Gaji', '$2y$10$YljZ.mRiwEIE2Myunm5OK.OTjsdFHXST3TgoZYzZiLTqh/89R1R9C', 'gazi@tank.com', '323232341', 'Student'),
-(6, 'Dhara', '$2y$10$oN1IyjY0FQaqmgAGzOy87.doodHM6Z3bB3Ytin6svI7KtgZ7IdEIe', '', '01714489525', 'Teacher');
+(6, 'Dhara', '$2y$10$oN1IyjY0FQaqmgAGzOy87.doodHM6Z3bB3Ytin6svI7KtgZ7IdEIe', '', '01714489525', 'Teacher'),
+(7, 'Ikram', '$2y$10$wWr4mXbS3y8eUg5cFCHURO5CDSgS1NZ4SFZMMu.YecxEPuHcVa7pm', 'ikram@abc.com', '012345678911', 'Student'),
+(8, 'Kram', '$2y$10$1UsvxLZ5qscD7sWHhJot3.BjQ4sz.x1gM/WB6r3gpBLydgfsV.lR.', 'kram@mail.com', '+8801234567891', 'ClassMod');
 
 --
 -- Indexes for dumped tables
@@ -267,6 +317,13 @@ ALTER TABLE `announcement`
 ALTER TABLE `assignment`
   ADD PRIMARY KEY (`assID`),
   ADD KEY `fk_ass1` (`classID`);
+
+--
+-- Indexes for table `classmod`
+--
+ALTER TABLE `classmod`
+  ADD PRIMARY KEY (`modID`),
+  ADD KEY `modID` (`modID`);
 
 --
 -- Indexes for table `classroom`
@@ -296,7 +353,7 @@ ALTER TABLE `enroll`
 --
 ALTER TABLE `query`
   ADD PRIMARY KEY (`qID`),
-  ADD KEY `fk_q1` (`SODid`),
+  ADD KEY `fk_q1` (`classID`),
   ADD KEY `fk_q2` (`studentID`);
 
 --
@@ -353,7 +410,7 @@ ALTER TABLE `announcement`
 -- AUTO_INCREMENT for table `assignment`
 --
 ALTER TABLE `assignment`
-  MODIFY `assID` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `assID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `classroom`
@@ -365,13 +422,13 @@ ALTER TABLE `classroom`
 -- AUTO_INCREMENT for table `enroll`
 --
 ALTER TABLE `enroll`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `query`
 --
 ALTER TABLE `query`
-  MODIFY `qID` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `qID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `submission`
@@ -397,6 +454,12 @@ ALTER TABLE `assignment`
   ADD CONSTRAINT `fk_ass1` FOREIGN KEY (`classID`) REFERENCES `classroom` (`classID`);
 
 --
+-- Constraints for table `classmod`
+--
+ALTER TABLE `classmod`
+  ADD CONSTRAINT `classmod_ibfk_1` FOREIGN KEY (`modID`) REFERENCES `user` (`userID`);
+
+--
 -- Constraints for table `classroom`
 --
 ALTER TABLE `classroom`
@@ -420,7 +483,7 @@ ALTER TABLE `enroll`
 -- Constraints for table `query`
 --
 ALTER TABLE `query`
-  ADD CONSTRAINT `fk_q1` FOREIGN KEY (`SODid`) REFERENCES `student` (`studentID`),
+  ADD CONSTRAINT `fk_q1` FOREIGN KEY (`classID`) REFERENCES `classroom` (`classID`),
   ADD CONSTRAINT `fk_q2` FOREIGN KEY (`studentID`) REFERENCES `student` (`studentID`);
 
 --
